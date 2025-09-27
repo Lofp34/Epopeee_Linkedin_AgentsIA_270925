@@ -3,6 +3,13 @@ from typing import Any, Dict, List
 from crewai import Agent, Crew, Process, Task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import SerperDevTool
+
+from epolin.tools import HdwLinkedinTool
+
+
+_SERPER_TOOL = SerperDevTool()
+_HDW_TOOL = HdwLinkedinTool()
 
 
 def _resolve_config(config: Dict[str, Any], key: str, section: str) -> Dict[str, Any]:
@@ -61,6 +68,7 @@ class Epolin:
         return Agent(
             config=self._agent_config("profil_social_agent"),
             verbose=True,
+            tools=[_HDW_TOOL],
         )
 
     @agent
@@ -69,6 +77,7 @@ class Epolin:
         return Agent(
             config=self._agent_config("web_company_agent"),
             verbose=True,
+            tools=[_SERPER_TOOL],
         )
 
     @agent
@@ -77,6 +86,7 @@ class Epolin:
         return Agent(
             config=self._agent_config("sector_watch_agent"),
             verbose=True,
+            tools=[_SERPER_TOOL],
         )
 
     @agent
@@ -85,6 +95,7 @@ class Epolin:
         return Agent(
             config=self._agent_config("outreach_strategy_agent"),
             verbose=True,
+            tools=[_SERPER_TOOL],
         )
 
     @task
