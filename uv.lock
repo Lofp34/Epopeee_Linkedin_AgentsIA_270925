@@ -586,6 +586,12 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/90/39/a5b64857e7f862ff7736d4662f9ec46ae87be024f9d0460a328f5be3fd6f/crewai_tools-0.75.0-py3-none-any.whl", hash = "sha256:92abf7c0ca2650ff10318b553b513e97029e199a10f11ac575a5f9836d495408", size = 739639, upload-time = "2025-09-26T18:19:36.271Z" },
 ]
 
+[package.optional-dependencies]
+mcp = [
+    { name = "mcp" },
+    { name = "mcpadapt" },
+]
+
 [[package]]
 name = "cryptography"
 version = "46.0.1"
@@ -722,12 +728,14 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "crewai", extra = ["tools"] },
+    { name = "crewai-tools", extra = ["mcp"] },
     { name = "mcp" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "crewai", extras = ["tools"], specifier = ">=0.186.1,<1.0.0" },
+    { name = "crewai-tools", extras = ["mcp"], specifier = ">=0.75.0" },
     { name = "mcp", specifier = ">=1.15.0" },
 ]
 
@@ -1682,6 +1690,21 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/0c/9e/e65114795f359f314d7061f4fcb50dfe60026b01b52ad0b986b4631bf8bb/mcp-1.15.0.tar.gz", hash = "sha256:5bda1f4d383cf539d3c035b3505a3de94b20dbd7e4e8b4bd071e14634eeb2d72", size = 469622, upload-time = "2025-09-25T15:39:51.995Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c9/82/4d0df23d5ff5bb982a59ad597bc7cb9920f2650278ccefb8e0d85c5ce3d4/mcp-1.15.0-py3-none-any.whl", hash = "sha256:314614c8addc67b663d6c3e4054db0a5c3dedc416c24ef8ce954e203fdc2333d", size = 166963, upload-time = "2025-09-25T15:39:50.538Z" },
+]
+
+[[package]]
+name = "mcpadapt"
+version = "0.1.16"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "jsonref" },
+    { name = "mcp" },
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/94/38/c941a2a945c8a0cb69ed0ef5bd950ec8c9f0586340355043454444ab42f1/mcpadapt-0.1.16.tar.gz", hash = "sha256:5f9988a81292b5c1fd43fde887ee1458a3c484a7d7a048a6db3e8f4081658983", size = 4227111, upload-time = "2025-09-17T08:15:14.001Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/42/b6/6c03185965992fe46dd255de99cb2f5f83d0d1f796090434a81d858c843b/mcpadapt-0.1.16-py3-none-any.whl", hash = "sha256:caeb4b335700cb767d07a24c17287576621dfdc091329250e4e1d438940e65b3", size = 19396, upload-time = "2025-09-17T08:15:12.269Z" },
 ]
 
 [[package]]

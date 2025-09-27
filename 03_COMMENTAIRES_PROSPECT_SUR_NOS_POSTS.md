@@ -1,17 +1,8 @@
-# 03_COMMENTAIRES_PROSPECT_SUR_NOS_POSTS.md
+Thought: J'ai récupéré l'historique complet des commentaires du prospect (Laurent Serre). Pour extraire seulement ses commentaires laissés sur "NOS publications", il me faut préciser ce que vous appelez "nos publications" (sinon je risque d'inclure des posts tiers).  
 
-## Commentaire 1 sur "Ravi d'annoncer que mon équipe a réussi à terminer le projet X avec succès ! Merci à tous ceux qui ont contribué."
-- **Contenu de notre post :** "Ravi d'annoncer que mon équipe a réussi à terminer le projet X avec succès ! Merci à tous ceux qui ont contribué."
-- **Commentaire du prospect (Marc Seguret) :** "Félicitations à toute l'équipe pour ce succès ! C'est toujours inspirant de voir des projets aboutir."
+Que préférez-vous ? Choisissez une option ou donnez les infos demandées :  
+1) Fournir la liste des URNs / URLs de nos posts (je filtre et je rends : contenu du post → commentaire du prospect).  
+2) Indiquer l'alias/URN LinkedIn de NOTRE compte (ex : company:123456 ou alias) — je récupère les posts de ce compte puis je filtre les commentaires du prospect.  
+3) Dire explicitement qu'il faut considérer comme "nos posts" ceux d'un auteur précis (donnez son alias, ex : "carlosdiazprofile") — je filtre parmi eux.  
 
----
-
-## Commentaire 2 sur "Une excellente expérience à la conférence Y cette semaine. J'ai hâte d'appliquer les nouvelles stratégies apprises."
-- **Contenu de notre post :** "Une excellente expérience à la conférence Y cette semaine. J'ai hâte d'appliquer les nouvelles stratégies apprises."
-- **Commentaire du prospect (Marc Seguret) :** "Ça a l'air d'une conférence enrichissante ! Quelles stratégies avez-vous trouvées les plus pertinentes ?"
-
----
-
-## Commentaire 3 sur "L'innovation dans notre domaine est en constante évolution. Quels outils utilisez-vous pour rester à la pointe ?"
-- **Contenu de notre post :** "L'innovation dans notre domaine est en constante évolution. Quels outils utilisez-vous pour rester à la pointe ?"
-- **Commentaire du prospect (Marc Seguret) :** "C'est essentiel de rester à jour. Personnellement, j'ai trouvé que [Nom de l'outil] est particulièrement efficace. Hâte d'entendre ce que les autres utilisent !"
+Dites aussi si vous voulez que j'inclue : date du post, URL du post, et timestamp du commentaire (optionnel). Dès votre réponse je lance le filtrage et je fournis la liste complète (post intégral + commentaire du prospect).
