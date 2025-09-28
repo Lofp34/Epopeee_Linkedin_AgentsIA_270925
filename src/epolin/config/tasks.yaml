@@ -16,10 +16,10 @@ tasks:
     output_file: "02_POSTS_LINKEDIN.md"
     agent: profil_social_agent
 
-  t3_commentaires_du_prospect_sur_nos_posts:
+  t3_commentaires_du_prospect_sur_posts:
     description: >
-      Retrouver les commentaires laissés par le prospect sur NOS publications (réseaux sociaux/blog).
-      Pour chaque correspondance, inclure le CONTENU de notre post puis, en dessous, le commentaire du prospect.
+      Retrouver les commentaires laissés par le prospect sur les publications linkedin d'autres utilisateurs.
+      Pour chaque correspondance, inclure le CONTENU du post commenté puis, en dessous, le commentaire du prospect.
     expected_output: "Liste des interactions du prospect avec nos contenus"
     output_file: "03_COMMENTAIRES_PROSPECT_SUR_NOS_POSTS.md"
     agent: profil_social_agent
@@ -57,7 +57,7 @@ tasks:
     context:
       - t1_profil_linkedin
       - t2_cinq_derniers_posts
-      - t3_commentaires_du_prospect_sur_nos_posts
+      - t3_commentaires_du_prospect_sur_posts
       - t4_fiche_entreprise_site
       - t5_fiche_officielle_mcp
       - t6_veille_sectorielle

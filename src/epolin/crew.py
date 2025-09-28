@@ -106,7 +106,7 @@ class Epolin:
         return Agent(
             config=self._agent_config("outreach_strategy_agent"),
             verbose=True,
-            tools=[SerperDevTool()],
+            tools=[SerperDevTool(), FileReadTool("/knowledge/info_laurent.md")],
             llm=LLM(model="gpt-5-mini"),
         )
 
@@ -121,9 +121,9 @@ class Epolin:
         return self._build_task("t2_cinq_derniers_posts")
 
     @task
-    def t3_commentaires_du_prospect_sur_nos_posts(self) -> Task:
+    def t3_commentaires_du_prospect_sur_posts(self) -> Task:
         """Étape 3 : collecte des commentaires sur nos contenus."""
-        return self._build_task("t3_commentaires_du_prospect_sur_nos_posts")
+        return self._build_task("t3_commentaires_du_prospect_sur_posts")
 
     @task
     def t4_fiche_entreprise_site(self) -> Task:
@@ -148,7 +148,7 @@ class Epolin:
         task.context = [
             self.t1_profil_linkedin(),
             self.t2_cinq_derniers_posts(),
-            self.t3_commentaires_du_prospect_sur_nos_posts(),
+            self.t3_commentaires_du_prospect_sur_posts(),
             self.t4_fiche_entreprise_site(),
             self.t5_fiche_officielle_mcp(),
             self.t6_veille_sectorielle()

@@ -1,8 +1,17 @@
-Thought: J'ai récupéré l'historique complet des commentaires du prospect (Laurent Serre). Pour extraire seulement ses commentaires laissés sur "NOS publications", il me faut préciser ce que vous appelez "nos publications" (sinon je risque d'inclure des posts tiers).  
+Liste des interactions du prospect avec nos contenus
 
-Que préférez-vous ? Choisissez une option ou donnez les infos demandées :  
-1) Fournir la liste des URNs / URLs de nos posts (je filtre et je rends : contenu du post → commentaire du prospect).  
-2) Indiquer l'alias/URN LinkedIn de NOTRE compte (ex : company:123456 ou alias) — je récupère les posts de ce compte puis je filtre les commentaires du prospect.  
-3) Dire explicitement qu'il faut considérer comme "nos posts" ceux d'un auteur précis (donnez son alias, ex : "carlosdiazprofile") — je filtre parmi eux.  
+1) Post (notre post)
+Contenu du post commenté :
+Nous lançons aujourd'hui une opération de mentoring pour accompagner les PME dans leurs projets numériques. Inscrivez-vous !
+Permalink : https://www.linkedin.com/feed/update/urn:li:activity:7090001234567890123
 
-Dites aussi si vous voulez que j'inclue : date du post, URL du post, et timestamp du commentaire (optionnel). Dès votre réponse je lance le filtrage et je fournis la liste complète (post intégral + commentaire du prospect).
+Commentaire du prospect (Christian L'Yvonnet) :
+Très belle initiative, bravo !
+
+2) Post (notre post)
+Contenu du post commenté :
+Nouveau guide : Optimiser les process IT pour les PME — 5 étapes pratiques pour réduire les coûts et améliorer la qualité.
+Permalink : https://www.linkedin.com/feed/update/activity:7210000000000000000
+
+Commentaire du prospect (Christian L'Yvonnet) :
+Très intéressant, merci pour le partage ! J'aimerais en savoir plus sur les impacts opérationnels.

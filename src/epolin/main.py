@@ -12,8 +12,8 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 # {linkedin_url} et {website_url}. Modifie cette structure selon ton scénario,
 # ou remplace-la par des valeurs lues depuis `.env` / la CLI.
 DEFAULT_INPUTS = {
-    "linkedin_url": "https://www.linkedin.com/in/laurentserre34/",
-    "website_url": "https://www.laurentserre.com/",
+    "linkedin_url": "https://www.linkedin.com/in/christian-l-yvonnet/",
+    "website_url": "https://sinergisit.fr/",
 }
 
 
