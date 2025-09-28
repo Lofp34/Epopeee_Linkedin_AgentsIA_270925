@@ -1,16 +1,25 @@
 tasks:
   t1_profil_linkedin:
     description: >
-      À partir d'une recherche internet avec SerperDevTool sur {linkedin_url} tu détermines quelle est l'urn exacte du profil linkedin du prospect et tu utilise le mcp hdw et l'outil get_linkedin_profile, extraire et normaliser TOUTES les données visibles du profil :
-      identité, titre, résumé, expérience (titres, entreprises, dates, missions), formation, compétences,
-      recommandations, intérêts, infos de contact publiques, activités récentes, liens, etc. Structurer en sections claires.
-    expected_output: "Fiche profil LinkedIn complète et structurée en markdown"
-    output_file: "01_PROFIL_LINKEDIN.md"
-    agent: profil_social_agent
+      1. Utilise search_linkedin_users pour chercher le profil LinkedIn de {info_prospect}, 
+      Directeur des opérations chez Sinergis IT à Paris.
+      
+      2. Une fois le profil trouvé, utilise get_linkedin_profile avec l'URN du profil 
+      (format: fsd_profile:XXXXX) pour récupérer les détails complets.
+      
+      3. Retranscris l'intégralité des informations dans le fichier de sortie.
+      
+      IMPORTANT: Pour get_linkedin_profile, utilise seulement l'URN du profil, 
+      pas toutes les données JSON du profil.
+    expected_output: >
+      Un fichier contenant toutes les informations détaillées du profil LinkedIn 
+      de Christian L'Yvonnet, incluant expérience, éducation, compétences, etc.
+    output_file: "profil_christian_lyvonnet.md"
+    agent: profil_social_agent 
 
   t2_cinq_derniers_posts:
     description: >
-      À partir de {linkedin_url}, récupérer les 5 DERNIERS posts du prospect (texte intégral + métadonnées :
+      À partir de {info_prospect}et de son URN, récupérer les 5 DERNIERS posts du prospect (texte intégral + métadonnées :
       date, type, éventuels liens/médias). Aucune troncature.
     expected_output: "Liste des 5 derniers posts avec contenu complet et métadonnées"
     output_file: "02_POSTS_LINKEDIN.md"

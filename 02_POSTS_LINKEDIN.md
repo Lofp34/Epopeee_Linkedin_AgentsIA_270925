@@ -1,89 +1,119 @@
-Liste des 5 derniers posts de Christian L'Yvonnet (texte intégral + métadonnées)
-
-1) Activity URN: activity:7132730869361856512
-- Date : 2023-11-20T09:15:00.000Z
-- Type : text
-- Permalink : https://www.linkedin.com/posts/christian-l-yvonnet_sagepartnerkickoff-activity-7132730869361856512-HlDA
-- Texte intégral :
-  Prenons le temps en ce début de semaine de mettre le cap sur le #SagePartnerKickoff FY24 qui s'est déroulé à Paris il y a quelques jours. Beaucoup d'échanges riches sur les évolutions produits et les best practices pour accompagner nos clients.
-
-  Merci à tous les participants et aux équipes Sinergis IT pour l'organisation.
-
-  #Sage #ERP #TransformationDigitale
-- Likes : 24
-- Commentaires : 5
-- Médias / Liens : aucun
-
-2) Activity URN: activity:7120001234567890123
-- Date : 2023-10-05T14:30:00.000Z
-- Type : text
-- Permalink : https://www.linkedin.com/posts/christian-l-yvonnet_digitalisation-activity-7120001234567890123
-- Texte intégral :
-  Retour sur un atelier client autour de la digitalisation des process comptables.
-
-  Nous avons travaillé sur l'automatisation des écritures récurrentes et la mise en place d'indicateurs de contrôle. Les échanges ont permis d'identifier des gains de productivité immédiats et des quick-wins pour réduire les erreurs humaines.
-
-  Félicitations aux équipes pour la qualité du travail et l'engagement client.
-
-  #Digitalisation #Comptabilité #ERP
-- Likes : 12
-- Commentaires : 3
-- Médias / Liens : aucun
-
-3) Activity URN: activity:7100001234567890123
-- Date : 2023-08-15T11:00:00.000Z
-- Type : text
-- Permalink : https://www.linkedin.com/posts/christian-l-yvonnet_congratulations-activity-7100001234567890123
-- Texte intégral :
-  Félicitations à l'équipe Sinergis IT pour la certification partner. Un bel effort collectif qui reconnaît le travail quotidien et la rigueur apportée aux projets clients.
-
-  Continuons sur cette dynamique !
-
-  #Team #Certification #SatisfactionClient
-- Likes : 30
-- Commentaires : 10
-- Médias / Liens : aucun
-
-4) Activity URN: activity:7085001234567890123
-- Date : 2023-06-02T08:45:00.000Z
-- Type : text
-- Permalink : https://www.linkedin.com/posts/christian-l-yvonnet_erp-activity-7085001234567890123
-- Texte intégral :
-  Partage d'un retour d'expérience sur la mise en place d'un ERP en 6 mois chez un client PME.
-
-  Points clés :
-  - Implication des équipes métier dès le démarrage
-  - Gouvernance projet claire
-  - Découpage en phases livrables
-  - Formation continue et support post-go live
-
-  Le respect des fondamentaux permet d'atteindre des délais ambitieux sans sacrifier la qualité.
-
-  #ERP #PME #GestionDeProjet
-- Likes : 18
-- Commentaires : 4
-- Médias / Liens : aucun
-
-5) Activity URN: activity:7060001234567890123
-- Date : 2023-03-21T16:20:00.000Z
-- Type : article
-- Permalink : https://www.linkedin.com/posts/christian-l-yvonnet_changement-activity-7060001234567890123
-- Texte intégral :
-  Article : Pourquoi la conduite du changement est au cœur des projets IT réussis.
-
-  La technologie seule ne suffit pas. Sans accompagnement des équipes, gestion des résistances et communication adaptée, les projets peinent à délivrer la valeur attendue. Voici quelques recommandations pratiques issues de nos retours terrain.
-
-  1) Impliquer les sponsors
-  2) Communiquer tôt et souvent
-  3) Former par scénarios concrets
-  4) Mesurer l'adoption
-
-  #ConduiteDuChangement #Transformation #IT
-- Likes : 40
-- Commentaires : 12
-- Médias / Liens :
-  - Type : link
-  - URL : https://www.sinergis-it.com/blog/conduite-du-changement
-  - Title : Pourquoi la conduite du changement est au cœur des projets IT réussis
-  - Description : Article détaillant les bonnes pratiques pour accompagner la conduite du changement lors d'une transformation digitale.
-  - Thumbnail : https://www.sinergis-it.com/assets/images/changement-thumb.jpg
+[
+  {
+    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7376699936660221954",
+    "author": "Dan KOHN",
+    "created_at": "2023-05-25T10:05:17Z",
+    "text": "Voici la première tablée pré événement riche en échanges 🗣🍽, avec 19 intervenants et pas de modérateur dans un format convivial, impatient de lancer le premier SEPTEO Future Insights 🚀.\n#SFIHR25",
+    "images": null,
+    "video_url": null,
+    "comment_count": 1,
+    "share_count": 0,
+    "reactions": [
+      {
+        "type": "like",
+        "count": 18
+      },
+      {
+        "type": "empathy",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7376234996027629569",
+    "author": "Dan KOHN",
+    "created_at": "2023-05-25T07:10:46Z",
+    "text": "[Évènement] Septeo Future Insights : Avez-vous votre badge pour l’événement RH incontournable de la rentrée ?\n\nDans 48h, nous accueillerons décideurs et experts RH pour une journée où l’IA, la data et les nouvelles compétences redéfiniront les contours du futur du travail.\n\nLes préparatifs sont bouclés : badges imprimés, interventions peaufinées, networking organisé. Tout est prêt pour faire de cette rencontre un moment unique d’échanges et de prospective.\n\nAu programme : ...",
+    "images": [
+      "https://media.licdn.com/dms/image/v2/D4E22AQF5ETYLBkzfDA/feedshare-shrink_1280/B4EZl1qhq_HEAs-/0/1758615726110?e=1761782400&v=beta&t=cfEzJdUthzYniZv6B8NW3ccRxToMjLhm3Bt316aCqzw"
+    ],
+    "video_url": null,
+    "comment_count": null,
+    "share_count": null,
+    "reactions": null
+  },
+  {
+    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7371915247235997696",
+    "author": "Dan KOHN",
+    "created_at": "2023-05-12T15:25:58Z",
+    "text": "✨ C'est avec un grand enthousiasme que nous venons de recevoir le lettrage #SFI pour les 🔸SEPTEO Future Insights🔸conçu d'un coup de 🪄 en co-design avec Hanhai Zheng.\n\nLe visuel trônera on stage aux côtés des formidables speakers qui vont intervenir à l'occasion du tout premier event dédié aux #RH.\n\nLe site de l'évènement et lien d'inscription en commentaire 👇 \n\n#SFI #Innovation #IA #DRH #onboarding #data #cybersécurité",
+    "images": [
+      "https://media.licdn.com/dms/image/v2/D5622AQE5VbQj12oC6A/feedshare-shrink_2048_1536/B56Zk5N2aYG0Aw-/0/1757601557152?e=1761782400&v=beta&t=s9Z33pho56hMJee5k5JU_3HGYtGFjf8Qrf59Zr0qXcQ"
+    ],
+    "video_url": null,
+    "comment_count": 7,
+    "share_count": 2,
+    "reactions": [
+      {
+        "type": "like",
+        "count": 73
+      },
+      {
+        "type": "praise",
+        "count": 14
+      },
+      {
+        "type": "empathy",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7371558147783692288",
+    "author": "Dan KOHN",
+    "created_at": "2023-05-07T15:33:39Z",
+    "text": "🎬 En cette période de rentrée, j'ai posé mon 🎒 à l'université, non pas que je reprenne mes études 👨‍🎓, mais je me suis rendu aux universités d'été des #expertscomptables organisées... \n\n#facturationelectronique #relationclients",
+    "images": [
+      "https://media.licdn.com/dms/image/v2/D4E05AQHEDFbn6JyCpQ/videocover-high/B4EZkz4LoTKYCI-/0/1757512066337?e=1759690800&v=beta&t=teN_Dzy_kkReG_5ZugT_o1jQobfwKTB1CUFR9MFg4A8"
+    ],
+    "video_url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQHEDFbn6JyCpQ/mp4-720p-30fp-crf28/B4EZkz4LoTKYBw-/0/1757512081203?e=1759690800&v=beta&t=58r6YZbNkNSLhM6rUdLCEPuXkwZuvtRw7NN4PJXx4ZE",
+    "comment_count": 4,
+    "share_count": 3,
+    "reactions": [
+      {
+        "type": "like",
+        "count": 74
+      },
+      {
+        "type": "empathy",
+        "count": 7
+      },
+      {
+        "type": "praise",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7369308263336656898",
+    "author": "Dan KOHN",
+    "created_at": "2023-04-23T10:53:25Z",
+    "text": "😲 Et là vous vous dites mais quel est donc ce Future Insights ? Un colloque académique poussiéreux ? Une masterclass IA façon buzzword ? Un énième débat RH déjà vu ? 🤔 \n\nEt bien… non. C’est justement tout l’inverse... \n\n#SepteoFutureInsights #IA #CultureEntreprise #RH #SFI25",
+    "images": null,
+    "video_url": null,
+    "comment_count": 2,
+    "share_count": 5,
+    "reactions": [
+      {
+        "type": "like",
+        "count": 46
+      },
+      {
+        "type": "praise",
+        "count": 6
+      },
+      {
+        "type": "empathy",
+        "count": 3
+      },
+      {
+        "type": "interest",
+        "count": 2
+      },
+      {
+        "type": "appreciation",
+        "count": 1
+      }
+    ]
+  }
+]

@@ -6,6 +6,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from crewai.project import CrewBase, agent, crew, task
 from mcp import StdioServerParameters
+from crewai.knowledge.source.text_file_knowledge_source import TextFileKnowledgeSource
 
 def _resolve_config(config: Dict[str, Any], key: str, section: str) -> Dict[str, Any]:
     """Return the configuration block associated with ``key``."""
@@ -23,6 +24,9 @@ class Epolin:
     agents: List[BaseAgent]
     tasks: List[Task]
 
+        # Ajoutez votre knowledge source ici
+    knowledge_source_1 = TextFileKnowledgeSource(file_paths=["info_laurent.md"])
+
     # Paramètres de connexion au serveur MCP Horizon Datawave
     mcp_server_params = StdioServerParameters(
         command="npx",
@@ -32,6 +36,9 @@ class Epolin:
             "HDW_ACCOUNT_ID": os.getenv("HDW_ACCOUNT_ID"),
         },
     )
+
+    def get_mcp_tools(self):
+        return [MCPServerAdapter(self.mcp_server_params)]
 
     def _agent_config(self, key: str) -> Dict[str, Any]:
         """Lire la configuration de l'agent correspondant dans le YAML."""
@@ -72,12 +79,13 @@ class Epolin:
 
     @agent
     def profil_social_agent(self) -> Agent:
-        """Collecte toutes les données publiques du profil LinkedIn."""
+        """Collecte toutes les données publiques du profil LinkedIn via les outils MCP."""
         return Agent(
             config=self._agent_config("profil_social_agent"),
             verbose=True,
-            tools=[SerperDevTool()] + (self.get_mcp_tools() if hasattr(self, 'get_mcp_tools') else []),
-            llm=LLM(model="gpt-5-mini"),
+            # Ne plus inclure SerperDevTool ; on se contente des outils MCP
+            tools=self.get_mcp_tools() if hasattr(self, 'get_mcp_tools') else [],
+            llm=LLM(model="gpt-4o-mini"),
         )
 
     @agent
@@ -87,7 +95,7 @@ class Epolin:
             config=self._agent_config("web_company_agent"),
             verbose=True,
             tools=[SerperDevTool()],
-            llm=LLM(model="gpt-5-mini"),
+            llm=LLM(model="gpt-4o-mini"),
         )
 
     @agent
@@ -97,7 +105,7 @@ class Epolin:
             config=self._agent_config("sector_watch_agent"),
             verbose=True,
             tools=[SerperDevTool()],
-            llm=LLM(model="gpt-5-mini"),
+            llm=LLM(model="gpt-4o-mini"),
         )
 
     @agent
@@ -107,7 +115,8 @@ class Epolin:
             config=self._agent_config("outreach_strategy_agent"),
             verbose=True,
             tools=[SerperDevTool(), FileReadTool("/knowledge/info_laurent.md")],
-            llm=LLM(model="gpt-5-mini"),
+            knowledge_sources_1=[self.knowledge_source_1],  # Ajout de la knowledge source
+            llm=LLM(model="gpt-4o-mini"),
         )
 
     @task
