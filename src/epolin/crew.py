@@ -6,6 +6,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from crewai.project import CrewBase, agent, crew, task
 from mcp import StdioServerParameters
+from crewai_tools import MCPServerAdapter
 from crewai.knowledge.source.text_file_knowledge_source import TextFileKnowledgeSource
 
 def _resolve_config(config: Dict[str, Any], key: str, section: str) -> Dict[str, Any]:
@@ -24,21 +25,25 @@ class Epolin:
     agents: List[BaseAgent]
     tasks: List[Task]
 
-        # Ajoutez votre knowledge source ici
+    # Knowledge source
     knowledge_source_1 = TextFileKnowledgeSource(file_paths=["info_laurent.md"])
 
-    # Paramètres de connexion au serveur MCP Horizon Datawave
-    mcp_server_params = StdioServerParameters(
-        command="npx",
-        args=["-y", "@horizondatawave/mcp"],
-        env={
-            "HDW_ACCESS_TOKEN": os.getenv("HDW_ACCESS_TOKEN"),
-            "HDW_ACCOUNT_ID": os.getenv("HDW_ACCOUNT_ID"),
-        },
-    )
-
-    def get_mcp_tools(self):
-        return [MCPServerAdapter(self.mcp_server_params)]
+    # Paramètres de connexion aux serveurs MCP
+    mcp_server_params = [
+        StdioServerParameters(
+            command="npx",
+            args=["-y", "@horizondatawave/mcp"],
+            env={
+                "HDW_ACCESS_TOKEN": os.getenv("HDW_ACCESS_TOKEN"),
+                "HDW_ACCOUNT_ID": os.getenv("HDW_ACCOUNT_ID"),
+            },
+        ),
+        StdioServerParameters(
+            command="npx",
+            args=["-y", "mcp-recherche-entreprises"],
+        )
+    ]
+    mcp_connect_timeout = 60
 
     def _agent_config(self, key: str) -> Dict[str, Any]:
         """Lire la configuration de l'agent correspondant dans le YAML."""
@@ -61,20 +66,15 @@ class Epolin:
         agent_key = config.pop("agent", None)
         agent_instance = self._agent_instance(agent_key) if agent_key else None
 
-        # Extraire les paramètres du config pour les passer directement
         description = config.get("description", "")
         expected_output = config.get("expected_output", "")
         output_file = config.get("output_file", None)
-        
-        # Ne pas traiter le context ici - il sera résolu automatiquement par CrewAI
-        context_names = config.get("context", [])
 
         return Task(
             description=description,
             expected_output=expected_output,
             agent=agent_instance,
             output_file=output_file,
-            # Ne pas passer context ici - CrewAI le résoudra automatiquement
         )
 
     @agent
@@ -83,8 +83,7 @@ class Epolin:
         return Agent(
             config=self._agent_config("profil_social_agent"),
             verbose=True,
-            # Ne plus inclure SerperDevTool ; on se contente des outils MCP
-            tools=self.get_mcp_tools() if hasattr(self, 'get_mcp_tools') else [],
+            tools=self.get_mcp_tools(),
             llm=LLM(model="gpt-4o-mini"),
         )
 
@@ -94,7 +93,7 @@ class Epolin:
         return Agent(
             config=self._agent_config("web_company_agent"),
             verbose=True,
-            tools=[SerperDevTool()],
+            tools=[SerperDevTool()] + self.get_mcp_tools(),
             llm=LLM(model="gpt-4o-mini"),
         )
 
@@ -105,7 +104,7 @@ class Epolin:
             config=self._agent_config("sector_watch_agent"),
             verbose=True,
             tools=[SerperDevTool()],
-            llm=LLM(model="gpt-4o-mini"),
+            llm=LLM(model="gpt-5-mini"),
         )
 
     @agent
@@ -115,8 +114,8 @@ class Epolin:
             config=self._agent_config("outreach_strategy_agent"),
             verbose=True,
             tools=[SerperDevTool(), FileReadTool("/knowledge/info_laurent.md")],
-            knowledge_sources_1=[self.knowledge_source_1],  # Ajout de la knowledge source
-            llm=LLM(model="gpt-4o-mini"),
+            knowledge_sources=[self.knowledge_source_1],
+            llm=LLM(model="gpt-5-mini"),
         )
 
     @task
@@ -152,17 +151,7 @@ class Epolin:
     @task
     def t7_strategie_prise_de_contact(self) -> Task:
         """Étape 7 : plan d'approche multicanal personnalisé."""
-        task = self._build_task("t7_strategie_prise_de_contact")
-        # Définir manuellement le contexte avec les tâches précédentes
-        task.context = [
-            self.t1_profil_linkedin(),
-            self.t2_cinq_derniers_posts(),
-            self.t3_commentaires_du_prospect_sur_posts(),
-            self.t4_fiche_entreprise_site(),
-            self.t5_fiche_officielle_mcp(),
-            self.t6_veille_sectorielle()
-        ]
-        return task
+        return self._build_task("t7_strategie_prise_de_contact")
 
     @crew
     def crew(self) -> Crew:

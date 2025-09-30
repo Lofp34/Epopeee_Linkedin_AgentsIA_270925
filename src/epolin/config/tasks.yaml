@@ -1,8 +1,7 @@
 tasks:
   t1_profil_linkedin:
     description: >
-      1. Utilise search_linkedin_users pour chercher le profil LinkedIn de {info_prospect}, 
-      Directeur des opérations chez Sinergis IT à Paris.
+      1. Utilise search_linkedin_users pour chercher le profil LinkedIn de {prospect}.
       
       2. Une fois le profil trouvé, utilise get_linkedin_profile avec l'URN du profil 
       (format: fsd_profile:XXXXX) pour récupérer les détails complets.
@@ -13,13 +12,13 @@ tasks:
       pas toutes les données JSON du profil.
     expected_output: >
       Un fichier contenant toutes les informations détaillées du profil LinkedIn 
-      de Christian L'Yvonnet, incluant expérience, éducation, compétences, etc.
-    output_file: "profil_christian_lyvonnet.md"
+      de {prospect}, incluant expérience, éducation, compétences et tous les éléments présents sur son profil linkedin.
+    output_file: "prospect.md"
     agent: profil_social_agent 
 
   t2_cinq_derniers_posts:
     description: >
-      À partir de {info_prospect}et de son URN, récupérer les 5 DERNIERS posts du prospect (texte intégral + métadonnées :
+      À partir de {prospect} et de son URN, récupérer les 5 DERNIERS posts du {prospect} (texte intégral + métadonnées :
       date, type, éventuels liens/médias). Aucune troncature.
     expected_output: "Liste des 5 derniers posts avec contenu complet et métadonnées"
     output_file: "02_POSTS_LINKEDIN.md"
@@ -29,8 +28,8 @@ tasks:
     description: >
       Retrouver les commentaires laissés par le prospect sur les publications linkedin d'autres utilisateurs.
       Pour chaque correspondance, inclure le CONTENU du post commenté puis, en dessous, le commentaire du prospect.
-    expected_output: "Liste des interactions du prospect avec nos contenus"
-    output_file: "03_COMMENTAIRES_PROSPECT_SUR_NOS_POSTS.md"
+    expected_output: "Liste des interactions du prospect avec d'autres contenus"
+    output_file: "03_COMMENTAIRES_PROSPECT_SUR_POSTS.md"
     agent: profil_social_agent
 
   t4_fiche_entreprise_site:
@@ -44,8 +43,8 @@ tasks:
 
   t5_fiche_officielle_mcp:
     description: >
-      Si SIREN/SIRET trouvé à l'étape précédente, interroger le MCP "recherche-entreprises".
-      Sinon, requêter par dénomination sociale. Restituer un extrait maximal d'informations utiles.
+      Interroger le MCP "recherche-entreprises".
+      tu récoltes toutes les informations présentes dans la reponse du mcp: mcp-recherche-entreprises.
     expected_output: "Fiche officielle de l'entreprise depuis les bases gouvernementales"
     output_file: "05_FICHE_SIRENE_MCP.md"
     agent: web_company_agent

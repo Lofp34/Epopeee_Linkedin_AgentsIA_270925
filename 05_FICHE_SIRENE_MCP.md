@@ -1,13 +1,45 @@
 {
-  "Nom de l'entreprise": "Septeo",
-  "Type d'entreprise": "SAS",
-  "SIREN": "790 675 037",
-  "SIRET": "790 675 037 00036",
-  "Capital social": "7 017 550 €",
-  "Immatriculation": "République Française sous le n° 790 675 037",
-  "Domaine d'activité": "Éditeur de logiciels et solutions digitales pour les professionnels du droit, de l'immobilier, et autres secteurs.",
-  "Adresse": "Font de la Banquière, 194, avenue de la Gare Sud de France, 34970 LATTES, France",
-  "Téléphone": "Non spécifié",
-  "Email": "Non spécifié dans les mentions légales",
-  "Mentions légales": "Pour consulter les mentions légales complètes, visitez [le site officiel](https://www.septeo.com/fr/legal/mentions-legales)."
+  "Fiche Entreprise - Seguret Decoration": {
+    "Informations Générales": {
+      "Nom de l'entreprise": "Seguret Decoration",
+      "SIREN": "495406308",
+      "SIRET": "49540630800017",
+      "Adresse": "339 Avenue de Rodez, 12450 Luc-la-Primaube",
+      "Activité Principale": "46.73B - Commerce de gros de matériaux de construction",
+      "Date de création": "13 avril 2007",
+      "Tranche d'effectif salarié": "11 à 20 employés",
+      "État administratif": "Actif",
+      "Nature Juridique": "PME",
+      "Section d’activité principale": "G",
+      "Site Web": "http://seguret-decoration.fr"
+    },
+    "Dirigeants": [
+      {
+        "Nom": "Franck Roger Jacques Seguret",
+        "Qualité": "Gérant",
+        "Date de naissance": "1957-10"
+      },
+      {
+        "Nom": "Marc Etienne Emile Seguret",
+        "Qualité": "Gérant",
+        "Date de naissance": "1960-02"
+      }
+    ],
+    "Finances (Année 2023)": {
+      "Chiffre d'Affaires": "5,578,931 €",
+      "Résultat Net": "152,915 €"
+    },
+    "Établissements Associés": [
+      {
+        "Etablissement": "Seguret Decoration - 24 Rue Gutenberg, 15000 Aurillac",
+        "SIRET": "49540630800041",
+        "Activité Principale": "46.73B - Commerce de gros de matériaux de construction"
+      },
+      {
+        "Etablissement": "Seguret Decoration - 100 Avenue Charles de Gaulle, 15000 Aurillac",
+        "SIRET": "49540630800033",
+        "État administratif": "Fermé depuis le 1er février 2011"
+      }
+    ]
+  }
 }

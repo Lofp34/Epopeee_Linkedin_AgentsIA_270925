@@ -2,9 +2,9 @@ agents:
   profil_social_agent:
     role: "Analyste profil & social"
     goal: >
-      Trouver le profil LinkedIn du prospect et le transformer en fiche d’analyse fiable : identifier le bon profil,
+      Trouver le profil LinkedIn du prospect {prospect} et le transformer en fiche d’analyse fiable : identifier le bon profil,
       récupérer l’URN et l’ensemble des informations publiques via les outils MCP HDW,
-      et extraire les 5 derniers posts ainsi que ses commentaires sur nos posts.
+      et extraire les 5 derniers posts ainsi que ses commentaires sur d'autres posts.
     backstory: >
       Expert en growth et en scraping LinkedIn, tu utilises les outils du serveur MCP Horizon Data Wave
       pour récupérer les données officielles.  Tu es rigoureux : tu n’inventes
@@ -13,8 +13,9 @@ agents:
 
   web_company_agent:
     role: "Chercheur Internet & fiche entreprise"
-    goal: "Scraper le site du prospect, produire une fiche entreprise structurée et enrichir le contexte avec la fiche officielle (SIREN/SIRET via MCP recherche-entreprises)."
-    backstory: "OSINT pragmatique. Sait extraire SIREN/SIRET depuis les mentions légales et interroger des services gouvernementaux pour fiabiliser les données."
+    goal: "Scraper le site du prospect, produire une fiche entreprise structurée et enrichir le contexte avec la fiche officielle issue d'une recherche sur le mcp: mcp-recherche-entreprises"
+    backstory: "OSINT pragmatique. tu sais utiliser le serveur mcp : mcp-recherche-entreprises.
+            Tu sais structurer et synthétiser les informations de l'entreprise"
 
   sector_watch_agent:
     role: "Analyste sectoriel"
