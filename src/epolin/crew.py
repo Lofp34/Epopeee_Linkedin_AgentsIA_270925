@@ -104,7 +104,7 @@ class Epolin:
             config=self._agent_config("sector_watch_agent"),
             verbose=True,
             tools=[SerperDevTool()],
-            llm=LLM(model="gpt-5-mini"),
+            llm=LLM(model="gpt-4o-mini"),
         )
 
     @agent
@@ -113,7 +113,7 @@ class Epolin:
         return Agent(
             config=self._agent_config("outreach_strategy_agent"),
             verbose=True,
-            tools=[SerperDevTool(), FileReadTool("/knowledge/info_laurent.md")],
+            tools=[SerperDevTool()],
             knowledge_sources=[self.knowledge_source_1],
             llm=LLM(model="gpt-5-mini"),
         )

@@ -46,8 +46,10 @@ Epopee LinkedIn automatise la collecte et l'analyse d'informations autour d'un p
 
 ## 🧠 Données d'entrée & personnalisation
 
-- Les paramètres par défaut sont définis dans `src/epolin/main.py` via `DEFAULT_INPUTS` (`prospect`, `website_url`). Adaptez-les ou chargez vos propres valeurs depuis la CLI/`.env` si besoin.
-- Les agents sont décrits dans `src/epolin/config/agents.yaml` et les tâches dans `src/epolin/config/tasks.yaml`. Chaque tâche référence un agent et génère un livrable (`01_PROFIL_LINKEDIN.md`, etc.).
+- Les paramètres par défaut sont centralisés dans `src/epolin/main.py` (`BASE_INPUTS`). Fournissez au minimum `prospect`, `company`, `first_name`, `last_name` et `website_url`. La fonction `_prepare_inputs` génère automatiquement :
+  - `prospect_slug` (ex. `seguret-decoration_marc-seguret`) pour le dossier cible
+  - des variantes compatibles avec les noms de fichiers (`company_token`, `first_name_token`, etc.).
+- Les agents sont décrits dans `src/epolin/config/agents.yaml` et les tâches dans `src/epolin/config/tasks.yaml`. Chaque tâche référence un agent et produit un livrable dans `prospects/{prospect_slug}/NN_DESCRIPTION_{company_token}_{first_name_token}_{last_name_token}.md`.
 - Les fichiers de connaissance situés dans `knowledge/` peuvent être enrichis pour fournir du contexte supplémentaire (ex. `info_laurent.md`).
 
 ### Agents principaux
@@ -71,7 +73,7 @@ ou avec l'alias CrewAI :
 crewai run
 ```
 
-Les livrables sont générés à la racine (`01_PROFIL_LINKEDIN.md`, `02_POSTS_LINKEDIN.md`, etc.).
+Les livrables sont regroupés dans `prospects/<slug-du-prospect>/` afin d'historiser les recherches (`01_PROFIL_LINKEDIN_…`, `02_POSTS_LINKEDIN_…`, etc.).
 
 ### Autres commandes utiles
 

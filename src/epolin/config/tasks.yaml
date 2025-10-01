@@ -1,36 +1,51 @@
 tasks:
+tasks:
   t1_profil_linkedin:
     description: >
-      1. Utilise search_linkedin_users pour chercher le profil LinkedIn de {prospect}.
-      
-      2. Une fois le profil trouvé, utilise get_linkedin_profile avec l'URN du profil 
-      (format: fsd_profile:XXXXX) pour récupérer les détails complets.
-      
-      3. Retranscris l'intégralité des informations dans le fichier de sortie.
-      
-      IMPORTANT: Pour get_linkedin_profile, utilise seulement l'URN du profil, 
-      pas toutes les données JSON du profil.
+      1) Cherche {prospect} avec search_linkedin_users (prénom, nom, ville, company_keywords si connu).
+      2) Si 0 résultat, réessaie sans company_keywords puis avec keywords combinant nom/entreprise
+         et variantes orthographiques (ex. accents/nom commercial).
+      3) Si toujours 0, récupère l’entreprise (get_linkedin_company / get_linkedin_google_company),
+         liste les employés (get_linkedin_company_employees) et filtre par nom.
+      4) Si 1 profil fiable, appelle get_linkedin_profile avec son URN (seulement l’URN en paramètre).
+      5) Si >1 profil plausible, sélectionner le meilleur match (entreprise+localisation) et lister
+         les candidats alternatifs en bas de fichier.
+      6) Zéro troncature : retranscrire l’intégralité des champs publics retournés par get_linkedin_profile.
     expected_output: >
-      Un fichier contenant toutes les informations détaillées du profil LinkedIn 
-      de {prospect}, incluant expérience, éducation, compétences et tous les éléments présents sur son profil linkedin.
-    output_file: "prospect.md"
-    agent: profil_social_agent 
+      Un unique fichier Markdown contenant : URL du profil, URN, intégralité des champs publics
+      renvoyés par get_linkedin_profile, et une section "Traçabilité" (outils + paramètres) ;
+      en cas d’ambiguïté, une section "Candidats alternatifs".
+    output_file: "{prospect_directory}/01_PROFIL_LINKEDIN_{company_token}_{first_name_token}_{last_name_token}.md"
+    agent: profil_social_agent
+
 
   t2_cinq_derniers_posts:
     description: >
-      À partir de {prospect} et de son URN, récupérer les 5 DERNIERS posts du {prospect} (texte intégral + métadonnées :
-      date, type, éventuels liens/médias). Aucune troncature.
-    expected_output: "Liste des 5 derniers posts avec contenu complet et métadonnées"
-    output_file: "02_POSTS_LINKEDIN.md"
+      À partir de {prospect} et de son URN, récupérer via MCP Horizon Data Wave les 5 DERNIERS posts publiés
+      par le profil identifié. Exigences : tri antichronologique, pagination gérée, AUCUNE troncature (texte
+      intégral avec retours à la ligne conservés). Inclure métadonnées : date (ISO), type, URL, liens/médias.
+      Si <5 posts trouvés, indiquer "Nombre_trouvés" et "Raison". Zéro estimation : écrire "Non disponible"
+      quand une info manque. Effectuer jusqu’à 2 tentatives si la première renvoie vide/incomplète.
+    expected_output: >
+      Markdown listant jusqu’à 5 posts (du plus récent au plus ancien) avec : date, type, URL, médias,
+      puis le contenu complet en bloc. Fin de fichier : "Source : MCP Horizon Data Wave" et "Date de collecte".
+    output_file: "{prospect_directory}/02_POSTS_LINKEDIN_{company_token}_{first_name_token}_{last_name_token}.md"
     agent: profil_social_agent
+
 
   t3_commentaires_du_prospect_sur_posts:
     description: >
-      Retrouver les commentaires laissés par le prospect sur les publications linkedin d'autres utilisateurs.
-      Pour chaque correspondance, inclure le CONTENU du post commenté puis, en dessous, le commentaire du prospect.
-    expected_output: "Liste des interactions du prospect avec d'autres contenus"
-    output_file: "03_COMMENTAIRES_PROSPECT_SUR_POSTS.md"
+      À partir de {prospect} et de son URN, récupérer via MCP Horizon Data Wave jusqu’à 5 commentaires
+      laissés par {prospect} sous des publications d’AUTRES utilisateurs (exclure ses propres posts),
+      triés du plus récent au plus ancien. Pour chaque item : post parent (auteur, date ISO, URL, contenu intégral)
+      puis commentaire du prospect (date ISO, URL si dispo, texte intégral). Aucune troncature, pagination gérée,
+      déduplication par URL/ID. Écrire "Non disponible" si une info manque ; si aucun résultat, l’indiquer clairement.
+    expected_output: >
+      Markdown listant 1 à 5 interactions (post parent puis commentaire du prospect) avec métadonnées,
+      et un pied de page "Source : MCP Horizon Data Wave" + "Date de collecte".
+    output_file: "{prospect_directory}/03_COMMENTAIRES_PROSPECT_SUR_POSTS_{company_token}_{first_name_token}_{last_name_token}.md"
     agent: profil_social_agent
+
 
   t4_fiche_entreprise_site:
     description: >
@@ -38,7 +53,7 @@ tasks:
       Carrières, Mentions légales, Blog/Actus, Cas clients). Produire une fiche entreprise synthétique et structurée.
       Extraire SIREN/SIRET depuis les mentions légales si présent.
     expected_output: "Fiche entreprise complète avec informations légales"
-    output_file: "04_FICHE_ENTREPRISE_SITE.md"
+    output_file: "{prospect_directory}/04_FICHE_ENTREPRISE_SITE_{company_token}_{first_name_token}_{last_name_token}.md"
     agent: web_company_agent
 
   t5_fiche_officielle_mcp:
@@ -46,7 +61,7 @@ tasks:
       Interroger le MCP "recherche-entreprises".
       tu récoltes toutes les informations présentes dans la reponse du mcp: mcp-recherche-entreprises.
     expected_output: "Fiche officielle de l'entreprise depuis les bases gouvernementales"
-    output_file: "05_FICHE_SIRENE_MCP.md"
+    output_file: "{prospect_directory}/05_FICHE_SIRENE_MCP_{company_token}_{first_name_token}_{last_name_token}.md"
     agent: web_company_agent
 
   t6_veille_sectorielle:
@@ -54,14 +69,17 @@ tasks:
       Déduire le secteur/NAF du prospect (via t4/t5) et compiler une veille courte :
       6–8 points d'actualité récents, tendances, acteurs clés, signaux réglementaires/tech. Inclure des sources (titres + URLs).
     expected_output: "Synthèse de veille sectorielle avec sources"
-    output_file: "06_VEILLE_SECTORIELLE.md"
+    output_file: "{prospect_directory}/06_VEILLE_SECTORIELLE_{company_token}_{first_name_token}_{last_name_token}.md"
     agent: sector_watch_agent
 
   t7_strategie_prise_de_contact:
     description: >
-      À partir de 01–06, rédiger une stratégie de prise de contact qualitative et personnalisée :
-      hypothèses de pains, angles de valeur, mapping message→personae, séquence multicanale (email/LinkedIn/appel),
-      scripts courts (3–5 emails, 2–3 DMs, 1 opener d'appel), variantes de ton (sobre/énergique), et 5 objets d'email.
+      Intégrer PRIORITAIREMENT ./knowledge/info_laurent.md pour adapter à mon activité la stratégie de prise de contact,
+      en s’appuyant aussi sur les tâches de contexte listées ci-dessous. Si le fichier est introuvable, l’indiquer clairement
+      et poursuivre avec les seules données disponibles. Produire : hypothèses de pains (ancrées secteur), angles de valeur
+      liés à MES offres (issues d’info_laurent.md), mapping message→personae, séquence multicanale sur 7–10 jours (email/LinkedIn/appel),
+      scripts courts (3–5 emails, 2–3 DMs, 1 opener d’appel) en 2 tons (sobre/énergique), et 5 objets d’email (50–60 caractères).
+      Contraintes : zéro invention sur mes offres ; citer brièvement les passages utilisés d’info_laurent.md.
     context:
       - t1_profil_linkedin
       - t2_cinq_derniers_posts
@@ -69,6 +87,9 @@ tasks:
       - t4_fiche_entreprise_site
       - t5_fiche_officielle_mcp
       - t6_veille_sectorielle
-    expected_output: "Stratégie de prise de contact personnalisée avec scripts et séquences"
-    output_file: "07_STRATEGIE_CONTACT.md"
+    expected_output: >
+      Markdown structuré : Résumé prospect (3–5 lignes) · Pains · Angles de valeur (référencés à info_laurent.md) ·
+      Mapping personae · Séquence (J1…J10) · Scripts (emails, DMs, opener) · Objets d’email ·
+      "Sources utilisées" listant info_laurent.md + tâches de contexte.
+    output_file: "{prospect_directory}/07_STRATEGIE_CONTACT_{company_token}_{first_name_token}_{last_name_token}.md"
     agent: outreach_strategy_agent
